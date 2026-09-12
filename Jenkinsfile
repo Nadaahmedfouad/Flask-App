@@ -4,15 +4,17 @@ pipeline {
     environment {
         IMAGE_NAME = "nadafouuad/flask-app"
         CONTAINER_NAME = "flask-app-container"
+        REPO_URL = "https://github.com/Nadaahmedfouad/Flask-App"
     }
 
     stages {
 
-        stage('Checkout Repo') {
-            steps {
-                checkout scm
-            }
+       stage('Getting Repo files') {
+        steps {
+            git branch: 'main',
+                url: "${REPO_URL}"
         }
+    }
 
         stage('Build Docker Image') {
             steps {
